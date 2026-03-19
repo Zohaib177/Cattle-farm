@@ -23,3 +23,29 @@ This project allows you to **add, view, edit, delete, and search** animals in yo
 ---
 
 ## 📂 Project Structure
+Cattle-Farm-Project/
+│
+├─ add-list.html # Form to add animals
+├─ Animals-list.html # List of animals with Edit/Delete
+├─ dashboard.html # Dashboard showing totals + search
+├─ add-list.css # Styling for Add Animal form
+├─ Animals-list.css # Styling for Animals List table
+├─ navbar.css # Navbar + Dashboard styling
+└─ README.md # This file
+
+## 🚀 How to Run Locally
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/YourUsername/Cattle-Farm-Project.git
+
+Open the files in your browser:
+
+add-list.html → To add animals
+
+Animals-list.html → To view, edit, delete animals
+
+dashboard.html → To see totals and search
+
+No backend is required; all data is stored in the browser's localStorage.
