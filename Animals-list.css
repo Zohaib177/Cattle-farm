@@ -1,0 +1,81 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial;
+  background: #f4f7f9;
+  padding: 20px;
+}
+
+/* Container */
+.table-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c7a7b;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #2c7a7b;
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+/* Alternate rows */
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Buttons */
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  margin: 0 3px;
+  transition: 0.3s;
+}
+
+/* Edit button */
+button.edit {
+  background: #38a169;
+}
+
+button.edit:hover {
+  background: #2f855a;
+}
+
+/* Delete button */
+button.delete {
+  background: #e53e3e;
+}
+
+button.delete:hover {
+  background: #c53030;
+}

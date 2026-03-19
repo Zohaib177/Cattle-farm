@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Animals List</title>
+  <link rel="stylesheet" href="Animals-list.css">
+</head>
+<body>
+
+<h1>Animals List</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Age</th>
+      <th>Milk / per day </th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <!-- rows will be inserted here -->
+  </tbody>
+</table>
+
+<script>
+const tableBody = document.getElementById("tableBody");
+
+// get animals from localStorage
+let animals = JSON.parse(localStorage.getItem("animals")) || [];
+
+// function to display table
+function displayAnimals() {
+  tableBody.innerHTML = "";
+
+  animals.forEach((a, index) => {
+    tableBody.innerHTML += `
+      <tr>
+        <td>${a.name}</td>
+        <td>${a.type}</td>
+        <td>${a.age}</td>
+        <td>${a.milk}</td>
+        <td>
+          <button class="edit" onclick="editAnimal(${index})">Edit</button>
+          <button class="delete" onclick="deleteAnimal(${index})">Delete</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+// delete function
+function deleteAnimal(index) {
+  if(confirm("Are you sure you want to delete this animal?")) {
+    animals.splice(index, 1); // remove from array
+    localStorage.setItem("animals", JSON.stringify(animals)); // update localStorage
+    displayAnimals(); // refresh table
+  }
+}
+
+// edit function
+function editAnimal(index) {
+  const animal = animals[index];
+  const name = prompt("Edit Name:", animal.name);
+  const type = prompt("Edit Type:", animal.type);
+  const age = prompt("Edit Age:", animal.age);
+  const milk = prompt("Edit Milk per day:", animal.milk);
+
+  if(name && type && age && milk) {
+    animals[index] = { name, type, age, milk };
+    localStorage.setItem("animals", JSON.stringify(animals));
+    displayAnimals();
+  }
+}
+
+// initial display
+displayAnimals();
+</script>
+
+</body>
+</html>

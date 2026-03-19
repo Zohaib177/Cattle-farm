@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Animal</title>
+  <link rel="stylesheet" href="add-list.css">
+</head>
+<body>
+
+<h1>Add Animal</h1>
+
+<form id="animalForm">
+  <input type="number" id="id" placeholder="ID" required>
+
+    
+
+    <select required id="type">
+      <option value="">Select Type</option>
+      <option>Cow</option>
+      <option>Buffalo</option>
+    </select>
+  <input type="number" id="age" placeholder="Age" required>
+  <input type="number" id="milk" placeholder="Milk per day" required>
+  <button type="submit">Add Animal</button>
+</form>
+
+<script>
+const form = document.getElementById("animalForm");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // get existing animals from localStorage
+  let animals = JSON.parse(localStorage.getItem("animals")) || [];
+
+  // create new animal object
+  const animal = {
+    name: document.getElementById("id").value,
+    type: document.getElementById("type").value,
+    age: document.getElementById("age").value,
+    milk: document.getElementById("milk").value
+  };
+
+  // add to array
+  animals.push(animal);
+
+  // save back to localStorage
+  localStorage.setItem("animals", JSON.stringify(animals));
+
+  // clear form
+  form.reset();
+
+  alert("Animal added successfully ✅");
+});
+</script>
+
+</body>
+</html>

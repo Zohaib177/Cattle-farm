@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    /* Search result styling */
+    #searchResult {
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    #searchResult p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h2 class="logo">Cattle Farm</h2>
+
+    <ul class="nav-links">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="Animals-list.html">Animals List</a></li>
+      <li><a href="add-list.html">Add Animal</a></li>
+    </ul>
+
+    <div class="search-box">
+      <input type="search" placeholder="Search by Name...">
+      <button>Search</button>
+      <div id="searchResult"></div>
+    </div>
+  </nav>
+
+  <div class="dashboard">
+    <h1>Dashboard</h1>
+    <table>
+      <tr>
+        <th>Total Animals</th>
+        <th>Total Milk (Liters)</th>
+      </tr>
+      <tr>
+        <td id="totalAnimals">0</td>
+        <td id="totalMilk">0</td>
+      </tr>
+    </table>
+  </div>
+
+<script>
+// get animals from localStorage
+let animals = JSON.parse(localStorage.getItem("animals")) || [];
+
+// calculate totals
+const totalAnimals = animals.length;
+let totalMilk = 0;
+animals.forEach(a => totalMilk += Number(a.milk));
+
+// display in dashboard
+document.getElementById("totalAnimals").innerText = totalAnimals;
+document.getElementById("totalMilk").innerText = totalMilk;
+
+// ---- Search Functionality ----
+const searchInput = document.querySelector(".search-box input");
+const searchButton = document.querySelector(".search-box button");
+const searchResultDiv = document.getElementById("searchResult");
+
+searchButton.addEventListener("click", function() {
+  const query = searchInput.value.trim().toLowerCase();
+
+  if(query === "") {
+    searchResultDiv.innerHTML = "<p>Please enter a name to search.</p>";
+    return;
+  }
+
+  // search in animals array
+  const found = animals.find(a => a.name.toLowerCase() === query);
+
+  if(found) {
+    searchResultDiv.innerHTML = `
+      <p style="color:green;"><strong>Found:</strong> ${found.name} | Type: ${found.type} | Age: ${found.age} | Milk: ${found.milk} L/day</p>
+    `;
+  } else {
+    searchResultDiv.innerHTML = `<p style="color:red;"><strong>Not found in list</strong></p>`;
+  }
+
+  searchInput.value = "";
+});
+</script>
+</body>
+</html>
